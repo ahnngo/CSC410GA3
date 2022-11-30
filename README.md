@@ -1,1 +1,2 @@
-# CSC410GA3
+# CSC410GA1
+The repo for the second  GA assignment
