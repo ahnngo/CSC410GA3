@@ -7,6 +7,8 @@ using namespace std;
 population::population() {
 	individuals = NULL;
 	nIndividuals = 0;
+  parent1 = -1;
+  parent2 = -1;
 }
 
 population::~population() {
@@ -39,12 +41,12 @@ void population::select_parents() {
 	double parent1Fitness = 100.0;
 	double parent2Fitness = 100.0;
 	for (int i = 0; i < nIndividuals; i++) {
-		double error = this->individuals[i].calculate_overall_fitness(targetGenome); // FIX ME ARGUMENT NOT VALID NEED OVERLOADING
+		double error = this->individuals[i].calculate_overall_fitness(targetGenome); 
 		if (parent1Fitness < error) {
 			parent2Fitness = parent1Fitness;
 			this->parent2 = this->parent1;
 			parent1Fitness = error;
-			parent1 = this->individuals[i];
+			parent1 = i;
 		}
 	}
 }
@@ -70,21 +72,21 @@ void population::generate_new_population(int useRoulette) {
 double population::calculate_overall_fitness() {
 	double sumFitness;
 	for (int i = 0; i < this->nIndividuals; i++) {
-		sumFitness += this->individuals[i].calculate_overall_fitness(targetGenome); // // FIX ME ARGUMENT NOT VALID NEED OVERLOADING
+		sumFitness += this->individuals[i].calculate_overall_fitness(targetGenome); 
 	}
   double res = sumFitness / this->nIndividuals;
 	return res;
 }
 
 void population::print_parents() {
-	if (this->parent1.getNGenes() == 0) {
+	if (this->parent1 == -1) {
 		cout << "Parents not found" << endl;
 	}
 	else {
 		cout << "Parent 1: ";
-		this->parent1.print();
+		this->individuals[parent1].print();
 		cout << "Parent 2: ";
-		this->parent2.print();
+		this->individuals[parent2].print();
 	}
 }
 

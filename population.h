@@ -22,6 +22,6 @@ class population {
     genome* individuals;
     int nCrossover;
     genome targetGenome;
-    genome parent1;
-    genome parent2;
+    int parent1;
+    int parent2;
 };
