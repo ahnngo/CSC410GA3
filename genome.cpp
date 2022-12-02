@@ -105,9 +105,9 @@ int genome::getBlue(int index) {
 }; 
 
 void genome::print() {
-  cout << "GENOME: " << this->nGenes << " genes" << endl;
+  cout << " " << this->nGenes << " genes ";
    for (int i = 0; i < nGenes; i ++) {
-    cout << "(" << this->genes[i].red << "," << this->genes[i].blue  << "," << this->genes[i].green << ")" << endl;
+    cout << "(" << this->genes[i].red << "," << this->genes[i].blue  << "," << this->genes[i].green << ") ";
   };
   cout;
 };
@@ -123,9 +123,8 @@ double genome::get_mRate() {
 };
 
 void genome::mutate_gene(int index) {
-  double randNum = (double) rand()/RAND_MAX;
-  cout << "RandNum: " << randNum << endl;
-  if (randNum < this->mRate && index < this->nGenes) {
+  double randNum = (rand()%100)/100.0;
+  if (randNum < this->mRate) {
     setRed(index, rand() % 256 + 1);
     setGreen(index, rand() % 256 + 1);
     setBlue(index, rand() % 256 + 1);
@@ -133,7 +132,7 @@ void genome::mutate_gene(int index) {
 };
 
 void genome::mutate() {
-  for (int i = 0; i < nGenes; i ++) {
+  for (int i = 0; i < this->nGenes; i++) {
     mutate_gene(i);
   }
 };

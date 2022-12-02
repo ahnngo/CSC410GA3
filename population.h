@@ -14,6 +14,7 @@ class population {
     void generate_new_population(int useRoulette);
     double calculate_overall_fitness();
     void print_parents();
+    void print_target();
     void print_population();
     
   
@@ -22,6 +23,9 @@ class population {
     genome* individuals;
     int nCrossover;
     genome targetGenome;
-    int parent1;
-    int parent2;
+    int nGenes;
+    int parent1Index;
+    int parent2Index;
+    Pixel* parent1;
+    Pixel* parent2;
 };
