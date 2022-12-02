@@ -8,8 +8,8 @@ class population {
     void generate_population(int popSize, int nGenes); 
     void set_target(Pixel* target, int imageSize);
     void select_parents();
-    void set_nCrossover(int nCrossover = 1);
-    int get_nCrossover(int nCrossover);
+    void set_nCrossover(int nCrossover);
+    int get_nCrossover();
     void set_mutation(double mRate);
     void generate_new_population(int useRoulette);
     double calculate_overall_fitness();
@@ -19,5 +19,9 @@ class population {
   
   private:
     int nIndividuals;
-    int *individuals = new int[nIndividuals];
+    genome* individuals;
+    int nCrossover;
+    genome targetGenome;
+    genome parent1;
+    genome parent2;
 };

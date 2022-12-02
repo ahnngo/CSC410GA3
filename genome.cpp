@@ -41,6 +41,13 @@ void genome::delocate() {
   
 }; 
 
+int genome::getNGenes() {
+  return this->nGenes;
+}
+
+Pixel genome::getGene(int index){
+  return this->genes[index];
+}
 
 void genome::randomize() {
   // set random values between 0 and 256 for each of the Red, Blue, and Green 
@@ -148,15 +155,28 @@ double genome::calculate_overall_fitness(Pixel* target, int nPixels) {
     return -1;
   }
   double sumDiff = 0;
-  for (int i = 0; i < nPixels; i ++) {
+  for (int i = 0; i < nPixels; i++) {
     double diff = calculate_gene_fitness(i, target[i]);
     // cout << "Diff " << i << " " << diff << endl;
     sumDiff = sumDiff + diff;
     // cout << sumDiff << endl;
   }
-  double res = (double) sumDiff / nPixels;
+  double res = (double) sumDiff / this->nGenes;
   return res;
 };
+
+double genome::calculate_overall_fitness(genome target) {
+  if (this->nGenes != target.getNGenes()) {
+    return -1;
+  }
+  double sumDiff = 0;
+  for (int i = 0; i < this->nGenes; i++) {
+    double diff = calculate_gene_fitness(i, target.getGene(i));
+    sumDiff = sumDiff + diff;
+  }
+  double res = (double) sumDiff / this->nGenes;
+  return res;
+}
 
 void genome::setPixel(int index, Pixel newPixel) {
   if (0 <= index && index < this->nGenes) {

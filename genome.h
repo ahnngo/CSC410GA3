@@ -13,6 +13,8 @@ class genome {
     ~genome(); // Destructor
     void allocate(int nGenes); // Take input as how many Pixels to store, allocates space for them, and initializes all the RGB Pixel values to zero
     void delocate(); // free up the space that is pointed to by genes and sets nGenes to zero
+    int getNGenes(); 
+    Pixel getGene(int index);
     void randomize(); // set random values between 0 and 256 for each of the Red, Blue, and Green variables for each Pixel in the genes array
     void setRed(int index, int value); // set Red color
     void setGreen(int index, int value); // set Green color
@@ -27,6 +29,7 @@ class genome {
     void mutate(); // mutate all genes in the object
     double calculate_gene_fitness(int index, Pixel targetPixel); // calculate the average percent different of the RGB values between target and genes[index]
     double calculate_overall_fitness(Pixel* target, int nPixels); // calculate the difference between what genome should produce and what it actually produces
+    double calculate_overall_fitness(genome target);
     void setPixel(int index, Pixel newPixel); // set the pixel at provided index to newPixel
     std::string showResult(bool test); // return test fails or passes
     void UnitTest(); // Unit Testing for methods and have return
