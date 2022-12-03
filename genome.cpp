@@ -156,9 +156,7 @@ double genome::calculate_overall_fitness(Pixel* target, int nPixels) {
   double sumDiff = 0;
   for (int i = 0; i < nPixels; i++) {
     double diff = calculate_gene_fitness(i, target[i]);
-    // cout << "Diff " << i << " " << diff << endl;
     sumDiff = sumDiff + diff;
-    // cout << sumDiff << endl;
   }
   double res = (double) sumDiff / this->nGenes;
   return res;

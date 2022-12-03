@@ -5,17 +5,17 @@ class population {
   public:
     population();        // construction
     ~population();       // destruction
-    void generate_population(int popSize, int nGenes); 
-    void set_target(Pixel* target, int imageSize);
-    void select_parents();
-    void set_nCrossover(int nCrossover);
-    int get_nCrossover();
-    void set_mutation(double mRate);
-    void generate_new_population(int useRoulette);
-    double calculate_overall_fitness();
-    void print_parents();
-    void print_target();
-    void print_population();
+    void generate_population(int popSize, int nGenes); // create a population of popSize individuals, each of which have nGenes genes
+    void set_target(Pixel* target, int imageSize); // set the target fitness image to calculate the relative fitnesses of all the individual genomes
+    void select_parents(); // determine the two overall best individuals in the current population based on their relative fitness
+    void set_nCrossover(int nCrossover); // sets the number of crossover points to a positive integer
+    int get_nCrossover(); // returns the number of crossover points
+    void set_mutation(double mRate); // sets the mutation rate of each individual genome to mRate
+    void generate_new_population(int useRoulette); // generates the next population
+    double calculate_overall_fitness(); // returns the average fitness of this population
+    void print_parents(); // print out the screen the two parents used to create the next generation
+    void print_target(); // print out the target
+    void print_population(); // print out the screen the number of crossover points, the mutation rate, and the population
     
   
   private:
@@ -23,6 +23,7 @@ class population {
     genome* individuals;
     int nCrossover;
     genome targetGenome;
+    Pixel* target;
     int nGenes;
     int parent1Index;
     int parent2Index;
